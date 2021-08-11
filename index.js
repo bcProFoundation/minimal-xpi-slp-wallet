@@ -7,7 +7,7 @@
 
 'use strict'
 
-const BCHJS = require('@psf/bch-js')
+const BCHJS = require('@abcpros/bch-js')
 const crypto = require('crypto-js')
 
 // Local libraries
@@ -100,12 +100,13 @@ class MinimalBCHWallet {
       walletInfo.mnemonic = mnemonic
       walletInfo.privateKey = privateKey
       walletInfo.publicKey = publicKey.toString('hex')
-      walletInfo.address = walletInfo.cashAddress = _this.bchjs.HDNode.toCashAddress(
+      walletInfo.address = walletInfo.XAddress = _this.bchjs.HDNode.toXAddress(
         childNode
       )
-      walletInfo.slpAddress = _this.bchjs.SLP.Address.toSLPAddress(
-        walletInfo.address
-      )
+      // @Todo: implement slp address validation here with bchaddrjs-slp
+      // walletInfo.slpAddress = _this.bchjs.SLP.Address.toSLPAddress(
+      //   walletInfo.address
+      // )
       walletInfo.legacyAddress = _this.bchjs.HDNode.toLegacyAddress(childNode)
       walletInfo.hdPath = _this.hdPath
 
@@ -250,9 +251,12 @@ class MinimalBCHWallet {
 
   // Return information on SLP tokens held by this wallet.
   listTokens (slpAddress) {
-    const addr = slpAddress || this.walletInfo.slpAddress
+    return []
 
-    return _this.tokens.listTokensFromAddress(addr)
+    // @Todo: Implement slp later
+    // const addr = slpAddress || this.walletInfo.slpAddress
+
+    // return _this.tokens.listTokensFromAddress(addr)
   }
 
   // Send BCH. Returns a promise that resolves into a TXID.

@@ -62,5 +62,7 @@ docs
 coverage
 database/
 system-user-*.json
+.yalc/
+yalc.lock
 
 !README.md
