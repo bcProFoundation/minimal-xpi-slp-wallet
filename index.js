@@ -103,10 +103,11 @@ class MinimalBCHWallet {
       walletInfo.address = walletInfo.XAddress = _this.bchjs.HDNode.toXAddress(
         childNode
       )
+      walletInfo.cashAddress = _this.bchjs.HDNode.toCashAddress(childNode)
       // @Todo: implement slp address validation here with bchaddrjs-slp
-      // walletInfo.slpAddress = _this.bchjs.SLP.Address.toSLPAddress(
-      //   walletInfo.address
-      // )
+      walletInfo.slpAddress = _this.bchjs.SLP.Address.toSLPAddress(
+        walletInfo.cashAddress
+      )
       walletInfo.legacyAddress = _this.bchjs.HDNode.toLegacyAddress(childNode)
       walletInfo.hdPath = _this.hdPath
 
@@ -117,7 +118,7 @@ class MinimalBCHWallet {
         _this.utxos.tokenUtxos = utxoMocks.mockTokenUtxos
       } else {
         // Get any  UTXOs for this wallet.
-        await _this.utxos.initUtxoStore(walletInfo.address)
+        await _this.utxos.initUtxoStore(walletInfo.cashAddress)
       }
 
       _this.walletInfoCreated = true
@@ -176,9 +177,6 @@ class MinimalBCHWallet {
   // This is a wrapper for the send-bch.js library.
   send (outputs) {
     try {
-      // console.log(
-      //   `_this.utxos.bchUtxos: ${JSON.stringify(_this.utxos.bchUtxos, null, 2)}`
-      // )
 
       return _this.sendBch.sendBch(
         outputs,
