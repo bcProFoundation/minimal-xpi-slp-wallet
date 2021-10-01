@@ -1,0 +1,32 @@
+export = MinimalBCHWallet;
+declare class MinimalBCHWallet {
+    constructor(hdPrivateKeyOrMnemonic: any, advancedOptions: any);
+    advancedOptions: any;
+    hdPath: any;
+    fee: any;
+    isTest: boolean;
+    crypto: any;
+    BCHJS: any;
+    bchjs: any;
+    sendBch: SendBCH;
+    utxos: Utxos;
+    tokens: Tokens;
+    temp: any[];
+    walletInfoCreated: boolean;
+    walletInfoPromise: Promise<void>;
+    create(mnemonic: any): Promise<void>;
+    getUtxos(): any;
+    encrypt(mnemonic: any, password: any): any;
+    decrypt(mnemonicEncrypted: any, password: any): any;
+    getBalance(bchAddress: any): Promise<any>;
+    getTransactions(bchAddress: any): Promise<any>;
+    send(outputs: any): any;
+    sendTokens(output: any, satsPerByte: any): any;
+    burnTokens(qty: any, tokenId: any, satsPerByte: any): Promise<any>;
+    listTokens(slpAddress: any): any[];
+    sendAll(toAddress: any): any;
+    burnAll(tokenId: any): Promise<any>;
+}
+import SendBCH = require("./lib/send-bch");
+import Utxos = require("./lib/utxos");
+import Tokens = require("./lib/tokens");
