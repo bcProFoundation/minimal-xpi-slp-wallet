@@ -1,8 +1,9 @@
 {
   "name": "@abcpros/minimal-xpi-slp-wallet",
-  "version": "3.0.7",
+  "version": "3.0.9",
   "description": "A minimalist Bitcoin Cash (BCH) wallet npm library, for use in a web apps.",
-  "main": "dist/minimal-slp-wallet.min.js",
+  "main": "index.js",
+  "browser": "dist/minimal-slp-wallet.min.js",
   "types": "types/index.d.ts",
   "scripts": {
     "start": "node index.js",
@@ -38,7 +39,7 @@
   },
   "repository": "Permissionless-Software-Foundation/minimal-slp-wallet",
   "dependencies": {
-    "@abcpros/xpi-js": "^4.0.4",
+    "@abcpros/xpi-js": "^4.0.5",
     "apidoc": "^0.25.0",
     "bch-donation": "^1.1.1",
     "crypto-js": "^4.0.0"
