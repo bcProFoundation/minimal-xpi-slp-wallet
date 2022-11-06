@@ -1,9 +1,9 @@
 {
-  "name": "@abcpros/minimal-xpi-slp-wallet",
+  "name": "@bcpros/minimal-xpi-slp-wallet",
   "version": "3.0.10",
   "description": "A minimalist Bitcoin Cash (BCH) wallet npm library, for use in a web apps.",
   "main": "index.js",
-  "browser": "dist/minimal-slp-wallet.min.js",
+  "module": "dist/minimal-slp-wallet.min.js",
   "types": "types/index.d.ts",
   "scripts": {
     "start": "node index.js",
@@ -15,7 +15,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc --reporter=html mocha test/unit/ --exit",
     "build": "browserify index.js -p tinyify --s SlpWallet -o dist/minimal-slp-wallet.min.js",
-    "build-debug": "browserify index.js -p tinyify --s SlpWallet -o dist/minimal-slp-wallet.min.js",
+    "build-debug": "browserify index.js --s SlpWallet -o dist/minimal-slp-wallet.min.js",
     "ts:defs": "tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "keywords": [
@@ -37,32 +37,31 @@
     "title": "minimal-slp-wallet",
     "url": "localhost:5000"
   },
-  "repository": "Permissionless-Software-Foundation/minimal-slp-wallet",
+  "repository": "bcProFoundation/minimal-xpi-slp-wallet",
   "dependencies": {
-    "@abcpros/xpi-js": "^4.0.5",
+    "@bcpros/xpi-js": "^4.0.10",
     "apidoc": "^0.25.0",
     "bch-donation": "^1.1.1",
     "crypto-js": "^4.0.0"
   },
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "chai": "^4.2.0",
-    "coveralls": "^3.1.0",
-    "eslint": "7.11.0",
-    "eslint-config-prettier": "^6.13.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^6.0.0",
-    "lodash.clonedeep": "^4.5.0",
-    "mocha": "^8.2.0",
-    "nyc": "^15.1.0",
-    "semantic-release": "^17.4.3",
-    "sinon": "^9.2.0",
-    "standard": "^14.3.4",
-    "tinyify": "^3.0.0",
-    "typescript": "^4.4.3"
+    "browserify": "17.0.0",
+    "chai": "4.2.0",
+    "coveralls": "3.1.0",
+    "eslint": "7.17.0",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-config-standard": "16.0.2",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-standard": "4.0.1",
+    "husky": "4.3.8",
+    "lodash.clonedeep": "4.5.0",
+    "mocha": "9.2.1",
+    "nyc": "15.1.0",
+    "semantic-release": "19.0.3",
+    "sinon": "9.2.0",
+    "standard": "16.0.4",
+    "tinyify": "3.0.0"
   },
   "release": {
     "publish": [
@@ -75,6 +74,18 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run build"
+    }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "browser": "./dist/minimal-slp-wallet.min.js",
+        "node": "./index.js",
+        "default": "./index.js"
+      },
+      "require": {
+        "default": "./index.js"
+      }
     }
   }
 }

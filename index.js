@@ -7,7 +7,7 @@
 
 'use strict'
 
-const BCHJS = require('@abcpros/xpi-js')
+const BCHJS = require('@bcpros/xpi-js')
 const crypto = require('crypto-js')
 
 // Local libraries
@@ -177,7 +177,6 @@ class MinimalBCHWallet {
   // This is a wrapper for the send-bch.js library.
   send (outputs) {
     try {
-
       return _this.sendBch.sendBch(
         outputs,
         {
